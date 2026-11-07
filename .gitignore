@@ -1,3 +1,4 @@
 .env
 .venv
-
+app/__pycache__
+chromadb_grammar_kb
