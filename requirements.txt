@@ -17,4 +17,4 @@ streamlit
 audio-recorder-streamlit
 requests
 groq
-
+langdetect

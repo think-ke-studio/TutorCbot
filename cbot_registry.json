@@ -1,0 +1,8 @@
+{
+  "id": "cbot-kiswahili-grammar-01",
+  "subject": "Kiswahili",
+  "audience": "learner",
+  "endpoint": "http://backend:8000/session/message",
+  "capabilities": ["grammar_analysis", "bilingual_scaffolding", "voice_input", "voice_output"],
+  "verified": true
+}
