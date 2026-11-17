@@ -1,4 +1,5 @@
-﻿services:
+﻿
+services:
   backend:
     build:
       context: .
@@ -9,8 +10,8 @@
       - GROQ_API_KEY=${GROQ_API_KEY}
     volumes:
       - ./chromadb_grammar_kb:/app/chromadb_grammar_kb
-     networks:
-    dokploy-network:
+    networks:
+      - dokploy-network
       - tutor-network
 
   frontend:
@@ -26,10 +27,9 @@
     networks:
       - dokploy-network
       - tutor-network
- 
 networks:
-  dokploy-network:     # exposed the containers for access
+  dokploy-network:
     external: true
-  tutor-network:           # will expose the respective containers to each other 
+  tutor-network:
     driver: bridge
     name: tutor-network
