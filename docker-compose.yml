@@ -1,4 +1,4 @@
-﻿version: '3.8'
+version: '3.8'
 
 services:
   backend:
@@ -6,9 +6,9 @@ services:
       context: .
       dockerfile: Dockerfile.backend
     ports:
-      - "8000:8000"
+      - "${BACKEND_PORT:-8000}:${BACKEND_PORT:-8000}"
     environment:
-      - GROQ_API_KEY= fill from env file
+      - GROQ_API_KEY=${GROQ_API_KEY}
     volumes:
       - ./chromadb_grammar_kb:/app/chromadb_grammar_kb
 
@@ -17,8 +17,8 @@ services:
       context: .
       dockerfile: Dockerfile.frontend
     ports:
-      - "8501:8501"
+      - "${FRONTEND_PORT:-8501}:${FRONTEND_PORT:-8501}"
     environment:
-      - BACKEND_URL=http://backend:8000
+      - BACKEND_URL=http://backend:${BACKEND_PORT:-8000}
     depends_on:
       - backend
