@@ -3,7 +3,7 @@ import streamlit as st
 import requests
 
 # FastAPI Backend URL
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8042")
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8070")
 FASTAPI_TEXT_URL = f"{BACKEND_URL.rstrip('/')}/api/chat/message"
 FASTAPI_VOICE_URL = f"{BACKEND_URL.rstrip('/')}/api/chat/voice"
 
