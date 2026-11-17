@@ -1,34 +1,36 @@
+
 services:
   backend:
     build:
       context: .
       dockerfile: Dockerfile.backend
     ports:
-  - "${BACKEND_PORT:-8070}:${BACKEND_PORT:-8070}"
+      - "${BACKEND_PORT:-8070}:${BACKEND_PORT:-8070}"
     environment:
-GROQ_API_KEY=${GROQ_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
     volumes:
-./chromadb_grammar_kb:/app/chromadb_grammar_kb
-     networks:
-dokploy-network
-tutor-network
+      - ./chromadb_grammar_kb:/app/chromadb_grammar_kb
+    networks:
+      - dokploy-network
+      - tutor-network
+
   frontend:
     build:
       context: .
       dockerfile: Dockerfile.frontend
     ports:
-"${FRONTEND_PORT:-8501}:${FRONTEND_PORT:-8501}"
+      - "${FRONTEND_PORT:-8501}:${FRONTEND_PORT:-8501}"
     environment:
-BACKEND_URL=http://backend:${BACKEND_PORT:-8070}
+      - BACKEND_URL=http://backend:${BACKEND_PORT:-8070}
     depends_on:
-backend
-     networks:
-dokploy-network
-tutor-network
- 
+      - backend
+    networks:
+      - dokploy-network
+      - tutor-network
+
 networks:
-  dokploy-network:     # exposed the containers for access
+  dokploy-network:
     external: true
-  tutor-network:           # will expose the respective containers to each other 
+  tutor-network:
     driver: bridge
     name: tutor-network
