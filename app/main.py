@@ -178,4 +178,4 @@ async def retrieve_context(payload: ChatRequest):
     }
 
 
-# run using uvicorn app.main:app --reload --port 8042
+# run using uvicorn app.main:app --reload --port 8070
